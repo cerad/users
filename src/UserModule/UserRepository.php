@@ -1,6 +1,8 @@
 <?php
 namespace Cerad\Module\UserModule;
 
+use Cerad\Component\Dbal\Repository;
+
 class UserRepository extends Repository
 {
   protected $joins =
@@ -114,10 +116,15 @@ class UserRepository extends Repository
     }
     foreach($criteria as $colName => $value)
     {
+      if (strpos($colName,'.') === false) $colName = 'user.' . $colName;
+      
       $paramName = str_replace('.','_',$colName);
+      
       $qb->andWhere($colName . ' = :' . $paramName);
+      
       $qb->setParameter($paramName,$value);
     }
+  //echo sprintf("\n%s\n",(string)$qb);
     $rows = $qb->execute()->fetchAll();
     
     $users = [];

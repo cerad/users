@@ -1,5 +1,5 @@
 <?php
-namespace Cerad\Module\UserModule;
+namespace Cerad\Component\Dbal;
 
 class Repository
 {

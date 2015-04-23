@@ -1,10 +1,9 @@
 <?php
 namespace Cerad\Module\UserModule;
 
-use Cerad\Component\DependencyInjection\Container;
-
 class UserRepositoryTest extends \PHPUnit_Framework_TestCase
 {
+  protected $app;
   protected $container;
   
   public static function setUpBeforeClass()
@@ -17,9 +16,9 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
   }
   public function setUp()
   {
-    $this->container = $container = new Container();
-    new UserParameters($container);
-    new UserServices  ($container);
+    $this->app = $app = new UserApp();
+    
+    $this->container = $app->getContainer();
   }
   protected function getUserRepo()
   {

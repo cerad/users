@@ -7,8 +7,9 @@
   "license": "MIT",
   "autoload": { "psr-4":
   { 
-    "Cerad\\Module\\":  "src", 
-    "Cerad\\Archive\\": "archive" 
+    "Cerad\\Module\\":    "src", 
+    "Cerad\\Archive\\":   "archive",
+    "Cerad\\Component\\": "src" 
   }},
   "require": 
   {
@@ -16,6 +17,7 @@
     "symfony/console": "~2.6",
     "cerad/di": "0.1.*",
     "doctrine/dbal": "~2.5",
-    "symfony/yaml": "~2.6"
+    "symfony/yaml": "~2.6",
+    "cerad/http": "0.2.*"
   }
 }
