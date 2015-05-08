@@ -9,7 +9,8 @@
 >
   <testsuites>
     <testsuite name="UserModule Test Suite">
-      <directory>src/UserModule</directory>
+        <file>src/UserModule/UserRepositoryTest.php</file>
+        <file>src/UserModule/UserRoutesTest.php</file>
     </testsuite>
   </testsuites>
 </phpunit>

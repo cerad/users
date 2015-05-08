@@ -1,16 +1,20 @@
 <?php
 namespace Cerad\Module\UserModule;
 
+use Cerad\Component\DependencyInjection\Container;
+
 class UserRepositoryTest extends \PHPUnit_Framework_TestCase
 {
   protected $app;
+
+  /* @var $container Container */
   protected $container;
   
   public static function setUpBeforeClass()
   {
     $schemaFile = __DIR__ . '/schema.sql';
     
-    $cmd = 'mysql --login-path=impd < ' . $schemaFile;
+    $cmd = 'mysql --login-path=tests < ' . $schemaFile;
     
     shell_exec($cmd);
   }
@@ -23,11 +27,6 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
   protected function getUserRepo()
   {
     return $this->container->get('user_repository');
-  }
-  public function sestx()
-  {
-    $userRepo = $this->getUserRepo();
-    $userRepo->test();
   }
   public function testInsertUser()
   {
@@ -46,8 +45,10 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
     
     return $userId;
   }
+
   /**
    * @depends testInsertUser
+   * @param $userId
    */
   public function testInsertUserAuth($userId)
   {

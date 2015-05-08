@@ -1,18 +1,25 @@
 <?php
 namespace Cerad\Module\UserModule;
 
+//use Cerad\Module\UserModule\UserApp;
+
 use Cerad\Component\HttpMessage\Request;
+
+use Cerad\Component\DependencyInjection\Container;
 
 class UserRoutesTest extends \PHPUnit_Framework_TestCase
 {
+  /* @var $app UserApp */
   protected $app;
+
+  /* @var $container Container */
   protected $container;
   
   public static function setUpBeforeClass()
   {
     $schemaFile = __DIR__ . '/schema.sql';
     
-    $cmd = 'mysql --login-path=impd < ' . $schemaFile;
+    $cmd = 'mysql --login-path=tests < ' . $schemaFile;
     
     shell_exec($cmd);
   }

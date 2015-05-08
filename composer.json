@@ -7,10 +7,11 @@
   "license": "MIT",
   "autoload": { "psr-4":
   { 
-    "Cerad\\Module\\":    "src", 
-    "Cerad\\Archive\\":   "archive",
-    "Cerad\\Component\\": "src" 
+    "Cerad\\Module\\":  "src",
+    "Cerad\\Archive\\": "archive"
   }},
+  "prefer-stable":      true,
+  "minimum-stability": "dev",
   "require": 
   {
     "php": ">=5.5.5",
@@ -18,6 +19,10 @@
     "cerad/di": "0.1.*",
     "doctrine/dbal": "~2.5",
     "symfony/yaml": "~2.6",
-    "cerad/http": "0.2.*"
+    "cerad/http": "0.2.*",
+    "cerad/dbal": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.6"
   }
 }

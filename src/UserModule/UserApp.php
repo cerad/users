@@ -3,6 +3,7 @@
 namespace Cerad\Module\UserModule;
 
 use Cerad\Component\HttpMessage\Request;
+use Cerad\Component\HttpRouting\UrlMatcher;
 
 use Cerad\Component\DependencyInjection\Container;
 
@@ -17,7 +18,7 @@ class UserApp
     new UserServices  ($container);
     new UserRoutes    ($container);
     
-    $container->set('route_matcher',function($container)
+    $container->set('route_matcher',function(Container $container)
     {
       $routes = [];
       $tags = $container->getTags('route');
@@ -27,7 +28,7 @@ class UserApp
         $service   = $container->get($serviceId);
         $routes[$serviceId] = $service;
       }
-      return new \Cerad\Component\HttpRouting\UrlMatcher
+      return new UrlMatcher
       (
         $routes,
         $container->get('request_context')
@@ -48,6 +49,8 @@ class UserApp
     if (!$match) return null; //die ('No match for ' . $request->getRoutePath());
     
     $request->setAttributes($match);
+
+    /* @var $action callable */
     $action   = $request->getAttribute('_action');
     $response = $action($request);
     

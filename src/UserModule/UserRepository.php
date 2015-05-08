@@ -18,29 +18,8 @@ class UserRepository extends Repository
   ];
   public function insertUser($itemProps)
   {
-    $tableName = 'users';
-    
-    $itemx = $this->getTableDefaults($tableName);
-    
-    $primaryKey = $this->getTablePrimaryKey($tableName);
-    
-    unset($itemx[$primaryKey]);
-    
-    $c2p = $this->c2p;
-    $item = [];
-    foreach(array_keys($itemx) as $colName)
-    {
-      $propName = isset($c2p[$colName]) ? $c2p[$colName] : $colName;
-      
-      if (array_key_exists($propName,$itemProps))
-      {
-        $item[$colName] = $itemProps[$propName];
-      }
-    }
-    $this->dbConn->insert($tableName,$item);
+    $itemId =  $this->insertItem('users',$itemProps);
 
-    $itemId = $this->dbConn->lastInsertId();
-    
     if (isset($itemProps['auths']))
     {
       foreach($itemProps['auths'] as $auth)
@@ -53,32 +32,14 @@ class UserRepository extends Repository
   }
   public function insertUserAuth($itemProps)
   {
-    $cols = $this->getTableDefaults('user_auths');
-    unset($cols['id']);
-    
-    $item = [];
-    $c2p = $this->c2p;
-    foreach(array_keys($cols) as $colName)
-    {
-      $propName = isset($c2p[$colName]) ? $c2p[$colName] : $colName;
-      
-      if (array_key_exists($propName,$itemProps))
-      {
-        $item[$colName] = $itemProps[$propName];
-      }
-    }
-    $this->dbConn->insert('user_auths',$item);
-
-    return $this->dbConn->lastInsertId();   
+    return $this->insertItem('user_auths',$itemProps);
   }
   /* ==========================================================
    * Find one stuff
    */
   public function findOne($id)
   {
-    $items = $this->findBy(['user.id' => $id]);
-    
-    return count($items) === 1 ? $items[0] : null;
+    return $this->findItem('users',$id);
   }
   public function findOneWithAuths($id)
   {

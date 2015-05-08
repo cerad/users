@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS users;
+DROP DATABASE IF EXISTS tests;
 
-CREATE DATABASE users;
+CREATE DATABASE tests;
 
-USE users;
+USE tests;
 
 CREATE TABLE users 
 (
