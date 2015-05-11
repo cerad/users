@@ -10,7 +10,7 @@ class UserServices
      */
     $container->set('db_conn_users',function($container)
     {
-      return \Cerad\Component\Dbal\ConnectionFactory::create($container->get('db_url_users'));
+      return Cerad\Component\Dbal\ConnectionFactory::create($container->get('db_url_users'));
     });
     
     /* ===========================================

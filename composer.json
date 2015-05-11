@@ -15,11 +15,11 @@
   "require": 
   {
     "php": ">=5.5.5",
+    "symfony/yaml":    "~2.6",
     "symfony/console": "~2.6",
-    "cerad/di": "0.1.*",
-    "doctrine/dbal": "~2.5",
-    "symfony/yaml": "~2.6",
-    "cerad/http": "0.2.*",
+    "doctrine/dbal":   "~2.5",
+    "cerad/di":   "~0.1",
+    "cerad/http": "~0.3",
     "cerad/dbal": "dev-master"
   },
   "require-dev": {
