@@ -11,6 +11,8 @@
     <testsuite name="UserModule Test Suite">
         <file>src/UserModule/UserRepositoryTest.php</file>
         <file>src/UserModule/UserRoutesTest.php</file>
+        <file>src/AuthModule/Tests/AuthTokenTest.php</file>
+        <file>src/AuthModule/Tests/AuthUserTest.php</file>
     </testsuite>
   </testsuites>
 </phpunit>
