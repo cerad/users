@@ -1,26 +1,30 @@
 <?php
 namespace Cerad\Module\UserModule;
 
+use /** @noinspection PhpUnusedAliasInspection */
+  Cerad\Module\UserModule\UserRepository;
+
+use Cerad\Component\HttpMessage\Request;
 use Cerad\Component\HttpMessage\Response;
 use Cerad\Component\HttpMessage\ResponseJson;
 
 class UserController
 {
+  /** @var  UserRepository $userRepository */
   private $userRepository;
   
-  public function __construct($userRepository)
+  public function __construct(UserRepository $userRepository)
   {
     $this->userRepository = $userRepository;
   }
-  public function getOneAction($request,$userId)
+  public function getOneAction(/** @noinspection PhpUnusedParameterInspection */
+    Request $request,$userId)
   {
-    $user = $request->getParsedBody();
-    
     $userx = $this->userRepository->findOne($userId);
     
     return $userx ? new ResponseJson($userx,200) : new Response(null,404);
   }
-  public function postAction($request)
+  public function postAction(Request $request)
   {
     $user = $request->getParsedBody();
     
@@ -30,7 +34,7 @@ class UserController
     
     return new ResponseJson($userx,201);
   }
-  public function searchAction($request)
+  public function searchAction(Request $request)
   {
     $query = $request->getQueryParams();
     
