@@ -12,8 +12,9 @@ class AuthTests extends  \PHPUnit_Framework_TestCase
   protected $container;
   
   public static function setUpBeforeClass()
-  { 
-    shell_exec(sprintf('mysql --login-path=tests < %s',__DIR__ . '/schema.sql'));
+  {
+    shell_exec(sprintf('mysql --login-path=tests < %s',__DIR__ . '/../../UserModule/schema.sql'));
+    shell_exec(sprintf('mysql --login-path=tests < %s',__DIR__ . '/schema_data.sql'));
   }
   public function setUp()
   {

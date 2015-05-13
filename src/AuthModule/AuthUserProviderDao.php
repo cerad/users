@@ -17,10 +17,13 @@ class AuthUserProviderDao implements AuthUserProviderInterface
   {
     $sql = <<<EOT
 SELECT 
-  id,username,email,salt,password,roles, 
-  person_guid, account_name as person_name
+  id,
+  user_name AS userName,
+  disp_name AS dispName,
+  email,salt,password,roles,
+  person_key AS personKey
 FROM users
-WHERE username = ? OR email = ?;
+WHERE user_name = ? OR email = ?;
 EOT;
     $stmt = $this->db->executeQuery($sql,[$username,$username]);
     $rows = $stmt->fetchAll();
@@ -31,9 +34,8 @@ EOT;
       throw $ex;
     }
     $user = $rows[0];
-    
-    $user['roles'] = unserialize($user['roles']);
-    if (count($user['roles']) < 1) $user['roles'] = ['ROLE_USER'];
+
+    //if (count($user['roles']) < 1) $user['roles'] = ['ROLE_USER'];
     
     return $user;
   }

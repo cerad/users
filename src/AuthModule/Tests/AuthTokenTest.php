@@ -23,7 +23,7 @@ class AuthTokenTest extends AuthTests
     $jwtCoder   = $this->container->get('jwt_coder');
     $controller = $this->container->get('auth_token_controller');
 
-    $content = json_encode(['username' => 'ahundiak@testing.com','password'=>'zzz']);
+    $content = json_encode(['userName' => 'ahundiak','password'=>'zzz']);
     $headers = ['Content-Type' => 'application/json'];
     $request = new Request('POST /auth/tokens',$headers,$content);
 
@@ -33,10 +33,10 @@ class AuthTokenTest extends AuthTests
     
     $responsePayload = $response->getParsedBody();
     
-    $authJwt = $responsePayload['auth_token'];
+    $authToken = $responsePayload['authToken'];
     
-    $authPayload = $jwtCoder->decode($authJwt);
-    $this->assertEquals('ahundiak@testing.com',$authPayload['username']);
+    $authPayload = $jwtCoder->decode($authToken);
+    $this->assertEquals('ahundiak',$authPayload['userName']);
   }
   /**
    * @expectedException \Symfony\Component\Security\Core\Exception\UsernameNotFoundException
@@ -45,7 +45,7 @@ class AuthTokenTest extends AuthTests
   {
     $controller = $this->container->get('auth_token_controller');
 
-    $content  = json_encode(['username' => 'ahundiak' . 'x','password'=>'zzz']);
+    $content  = json_encode(['userName' => 'ahundiak' . 'x','password'=>'zzz']);
     $headers = ['Content-Type' => 'application/json'];
     $request  = new Request('POST /auth/tokens',$headers,$content);
     $controller->postAction($request);
@@ -57,7 +57,7 @@ class AuthTokenTest extends AuthTests
   {
     $controller = $this->container->get('auth_token_controller');
 
-    $content  = json_encode(['username' => 'ahundiak@testing.com','password'=>'zzz' . 'x']);
+    $content  = json_encode(['userName' => 'ahundiak@testing.com','password'=>'zzz' . 'x']);
     $headers = ['Content-Type' => 'application/json'];
     $request  = new Request('POST /auth/tokens',$headers,$content);
     $controller->postAction($request);

@@ -10,7 +10,7 @@ class AuthUserTest extends AuthTests
   {
     $userProvider = $this->container->get('auth_user_provider_dao');
     $user = $userProvider->loadUserByUsername('ahundiak@testing.com'); //print_r($user);
-    $this->assertEquals('Art Hundiak',$user['person_name']);
+    $this->assertEquals('Art Hundiak',$user['dispName']);
     
     $userPasswordEncoder = $this->container->get('auth_user_password_encoder_dao');
     
@@ -40,7 +40,7 @@ class AuthUserTest extends AuthTests
   {
     $userProvider = $this->container->get('auth_user_provider_dao');
     $user = $userProvider->loadUserByUsername('bailey5000');
-    $this->assertEquals('ROLE_USER',$user['roles'][0]);
+    $this->assertEquals('ROLE_USER',$user['roles']);
   }
   /* ===============================================
    * In Memory testing

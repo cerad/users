@@ -19,7 +19,7 @@ class AuthTokenController
   private $userPasswordEncoder;
   
   public function __construct(
-    JwtCoder $jwtCoder,
+    JwtCoder                  $jwtCoder,
     AuthUserProviderInterface $userProvider,
     PasswordEncoderInterface  $userPasswordEncoder)
   {
@@ -31,7 +31,7 @@ class AuthTokenController
   {
     $requestPayload = $request->getParsedBody();
     
-    $username = $requestPayload['username'];
+    $username = $requestPayload['userName'];
     $password = $requestPayload['password'];
     
     $user = $this->userProvider->loadUserByUsername($username);
@@ -45,14 +45,13 @@ class AuthTokenController
     $jwtPayload =
     [
       'iat'         => time(),
-      'username'    => $username,
+      'userName'    => $username,
+      'dispName'    => $username,
       'roles'       => $roles,
-      'person_name' => $user['person_name'],
-      'person_guid' => $user['person_guid'],
     ];
     $jwt = $this->jwtCoder->encode($jwtPayload);
     
-    $jwtPayload['auth_token'] = $jwt;
+    $jwtPayload['authToken'] = $jwt;
     
     return new ResponseJson($jwtPayload,201);
   }
