@@ -1,11 +1,14 @@
 <?php
 namespace Cerad\Module\UserModule;
 
+use Cerad\Component\HttpMessage\Request;
+use Cerad\Component\DependencyInjection\Container;
+
 class UserRoutes
 {
-  public function __construct($container)
+  public function __construct(Container $container)
   {
-    $usersRouteAction = function($request) use ($container)
+    $usersRouteAction = function(Request $request) use ($container)
     {
       $controller = $container->get('user_controller');
       $id = $request->getAttribute('id');
@@ -20,8 +23,10 @@ class UserRoutes
         case 'PUT':    return $controller->putAction   ($request,$id);
         case 'DELETE': return $controller->deleteAction($request,$id);
       }
+      // Should not get here
+      return null;
     };
-    $usersRouteMatch = function($path, $context = null) use($usersRouteAction)
+    $usersRouteMatch = function($path) use($usersRouteAction)
     {
       $params = [
         'id'      => null,

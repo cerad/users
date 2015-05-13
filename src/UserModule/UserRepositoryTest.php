@@ -5,6 +5,7 @@ use Cerad\Component\DependencyInjection\Container;
 
 class UserRepositoryTest extends \PHPUnit_Framework_TestCase
 {
+  /* @var $app UserApp */
   protected $app;
 
   /* @var $container Container */
@@ -21,7 +22,7 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
   public function setUp()
   {
     $this->app = $app = new UserApp();
-    
+    $app->boot();
     $this->container = $app->getContainer();
   }
   protected function getUserRepo()

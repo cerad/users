@@ -3,6 +3,7 @@
 namespace Cerad\Module\UserModule;
 
 use Cerad\Component\DependencyInjection\Container;
+
 class UserParameters 
 {
   public function __construct(Container $container)

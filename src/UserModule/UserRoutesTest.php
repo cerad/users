@@ -26,7 +26,7 @@ class UserRoutesTest extends \PHPUnit_Framework_TestCase
   public function setUp()
   {
     $this->app = $app = new UserApp();
-    
+    $app->boot();
     $this->container = $app->getContainer();
   }
   public function testPost()

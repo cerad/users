@@ -103,17 +103,4 @@ class UserRepository extends Repository
     }
     return array_values($users);
   }
-  /* =================================================
-   * Just o mess around with
-   */
-  public function test()
-  {
-    $qb = $this->dbConn->createQueryBuilder();
-    
-    $qb->addSelect(['user_name AS userName','disp_name']);
-    $qb->addSelect(['password AS user.password']);
-    $qb->from('users','user');
-    
-    die($qb);
-  }
 }

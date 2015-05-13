@@ -16,10 +16,10 @@
   {
     "php": ">=5.5.5",
     "symfony/console": "~2.6",
-    "cerad/di": "0.1.*",
-    "doctrine/dbal": "~2.5",
-    "symfony/yaml": "~2.6",
-    "cerad/http": "0.2.*",
+    "symfony/yaml":    "~2.6",
+    "doctrine/dbal":   "~2.5",
+    "cerad/di":   "~0.1",
+    "cerad/http": "dev-master",
     "cerad/dbal": "dev-master"
   },
   "require-dev": {
