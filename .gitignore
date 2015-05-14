@@ -3,3 +3,4 @@
 /vendor/
 /composer.lock
 /archive/ArchiveParameters.php
+/archive/data/

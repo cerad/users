@@ -24,6 +24,10 @@ class ArchiveServices
     {
       return ConnectionFactory::create($container->get('db_url_tourns'));
     });
+    $container->set('db_conn_users',function(Container $container)
+    {
+      return ConnectionFactory::create($container->get('db_url_users'));
+    });
     /* ===========================================
      * Commands
      */
@@ -38,6 +42,10 @@ class ArchiveServices
     $container->set('unload_tourns_command',function(Container $container)
     {
       return new UnloadTournsCommand($container->get('db_conn_tourns'));
+    },'command');
+    $container->set('load_users_command',function(Container $container)
+    {
+      return new LoadUsersCommand($container->get('db_conn_users'));
     },'command');
   }
 }
