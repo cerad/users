@@ -29,7 +29,8 @@ class LoadUsersCommand extends Command
   }
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    shell_exec(sprintf('mysql --login-path=impd < %s',__DIR__ . '/../config/schema.sql'));
+    $userName = $this->dbConn->getUsername();
+    shell_exec(sprintf('mysql --login-path=%s < %s',$userName,__DIR__ . '/../config/schema.sql'));
 
     $this->load('data/personsNG2014.yml');
     $this->load('data/personsTourns.yml');

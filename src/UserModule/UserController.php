@@ -20,9 +20,9 @@ class UserController
   public function getOneAction(/** @noinspection PhpUnusedParameterInspection */
     Request $request,$userId)
   {
-    $userx = $this->userRepository->findOne($userId);
+    $user = $this->userRepository->findOne($userId);
     
-    return $userx ? new ResponseJson($userx,200) : new Response(null,404);
+    return $user ? new ResponseJson($user,200) : new Response(null,404);
   }
   public function postAction(Request $request)
   {
