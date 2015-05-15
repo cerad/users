@@ -29,8 +29,12 @@ class LoadUsersCommand extends Command
   }
   protected function execute(InputInterface $input, OutputInterface $output)
   {
+    $dbName   = $this->dbConn->getDatabase();
     $userName = $this->dbConn->getUsername();
-    shell_exec(sprintf('mysql --login-path=%s < %s',$userName,__DIR__ . '/../config/schema.sql'));
+
+    shell_exec(sprintf('mysql --login-path=%s -e "DROP DATABASE IF EXISTS %s"',$userName,$dbName));
+    shell_exec(sprintf('mysql --login-path=%s -e "CREATE DATABASE %s"',        $userName,$dbName));
+    shell_exec(sprintf('mysql --login-path=%s %s < %s',$userName,$dbName,__DIR__ . '/../config/schema.sql'));
 
     $this->load('data/personsNG2014.yml');
     $this->load('data/personsTourns.yml');

@@ -1,8 +1,10 @@
-DROP DATABASE IF EXISTS users;
+-- DROP DATABASE IF EXISTS users;
 
-CREATE DATABASE users;
+-- CREATE DATABASE users;
 
-USE users;
+-- USE users;
+
+DROP TABLE IF EXISTS user_auths,users;
 
 CREATE TABLE users 
 (
