@@ -4,3 +4,4 @@
 /composer.lock
 /archive/ArchiveParameters.php
 /archive/data/
+/src/UserModule/UserParameters.php
